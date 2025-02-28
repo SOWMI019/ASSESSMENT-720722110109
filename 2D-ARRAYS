@@ -1,0 +1,220 @@
+1.FIND THE THIRD MAX IN A 2D ARRAY 
+public class Main {
+
+    public static void main(String[] args) {
+        
+        int[][] a = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+        int s = a.length * a[0].length;
+        int[] n= new int[s];
+        int index = 0;
+        for (int i=0; i<a.length; i++) {
+            for (int j=0; j<a[i].length; j++) {
+                n[index] = a[i][j];
+                index++;
+            }
+        }
+
+        
+        for (int i=0; i<n.length - 1; i++) {
+            for (int j=i + 1; j<n.length; j++) {
+                if (n[i] < n[j]) {
+                    
+                    int temp = n[i];
+                    n[i] = n[j];
+                    n[j] = temp;
+                }
+            }
+        }
+
+        
+        int count = 1;  
+        int thirdMax = n[0];
+
+        for (int i=1; i<n.length; i++) {
+            
+            if (n[i] != thirdMax) {
+                count++;
+                thirdMax = n[i];
+            }
+            if (count == 3) {
+                System.out.println("The third maximum value is: " + thirdMax);
+                return;
+            }
+        }
+        System.out.println("There is no third maximum value.");
+    }
+}
+******************************************************************************************************************
+public class Main{
+
+    public static void main(String[] args) {
+    
+        int[][] a = {
+            {5, 5, 5},
+            {5, 5, 5},
+            {5, 5, 5}
+        };
+
+        int s = a.length * a[0].length;
+        int[] n = new int[s];
+        int index = 0;
+
+        for (int i=0; i <a.length; i++) {
+            for (int j=0; j<a[i].length; j++) {
+                n[index] = a[i][j];
+                index++;
+            }
+        }
+
+        for (int i =0; i<n.length - 1; i++) {
+            for (int j =i + 1; j<n.length; j++) {
+                if (n[i] < n[j]) {
+                    int temp = n[i];
+                    n[i] = n[j];
+                    n[j] = temp;
+                }
+            }
+        }
+
+
+        int count = 1;  
+        int thirdMax = n[0];
+        boolean found = false;
+
+        for (int i=1; i<n.length; i++) {
+            if (n[i] != thirdMax) {
+                count++;
+                thirdMax = n[i];
+            }
+            if (count == 3) {
+                System.out.println("The third maximum value is: " + thirdMax);
+                found = true;
+                break;
+            }
+        }
+
+        //
+        if (!found) {
+            System.out.println("There is no third maximum value.");
+        }
+    }
+}
+***********************************************************************************
+2. SORT THE MATRIX 
+5 4 7
+1 8 3 
+9 6 2
+import java.util.Arrays;
+
+public class Main {
+
+    public static void main(String[] args) {
+        
+        int[][] a = {
+            {5, 4, 7},
+            {1, 8, 3},
+            {9, 6, 2}
+        };
+
+        int[] n = new int[9]; 
+        int index = 0;
+        
+        
+        for (int i=0; i<3; i++) {
+            for (int j=0; j<3; j++) {
+                n[index++] = a[i][j];
+            }
+        }
+
+        
+        Arrays.sort(n);
+
+        
+        index = 0;
+        for (int i=0; i<3; i++) {
+            for (int j=0; j<3; j++) {
+                a[i][j] = n[index++];
+            }
+        }
+
+        System.out.println("after sorting:");
+        for (int i=0; i<3; i++) {
+            for (int j=0; j<3; j++) {
+                System.out.print(a[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+***************************************************************************************
+3.2IF INPUT IS 
+5 4 7
+1 8 3 
+9 6 2
+import java.util.*;
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int row = sc.nextInt();
+        int col = sc.nextInt();
+        int[][] a = new int[row][col];
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                a[i][j] = sc.nextInt();
+            }
+        }
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                a[j][i] = a[i][j];
+            }
+        }
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                System.out.print(a[i][j]+" ");
+            }
+            System.out.println();
+        }
+        sc.close();
+    }
+}
+
+******************************************************************************************************
+4.ABUNDANT NUMBER
+public class Main {
+    public static void main(String[] args) {
+        int[][] a= {
+                {9,8,7,10},
+                {4,5,6,12},
+                {1,2,3,17},
+                {9,8,6,15}
+        };
+        int count = 0;
+        for (int i=0; i<4; i++) 
+        {
+            for (int j=0; j<4; j++) 
+            {
+                if (isAbundant(a[i][j]))
+                {
+                    count++;
+              }
+                }
+                   }
+        System.out.println("Abundant Numbers Count: " + count);
+        System.out.println(count % 2 == 0 ? "YES" : "NO");
+    }
+    public static boolean isAbundant(int num) {
+        int sum = 0;
+        for (int i =1; i<num; i++) {
+            if (num%i== 0) {
+                sum+=i;}}
+        return sum > num;
+    }
+}
+
+
+
+
